@@ -1,0 +1,40 @@
+﻿<meta charset="UTF-8" />
+
+@model City	
+@{
+	ViewBag.Title = Model !=null ? "Edit" : "Create";
+}
+
+<h2>@ViewBag.Title City</h2>
+<div asp-validation-summary=All></div>
+
+<form asp-action="@ViewBag.Title">
+	<label asp-for="CityId" class="control-label"></label>
+	<input asp-for="CityId" class="form-control" readonly />
+
+	<label asp-for="Code" class="control-label"></label>
+	<input asp-for="Code" class="form-control"  />
+
+	<label asp-for="ArabicName" class="control-label"></label>
+	<input asp-for="ArabicName" class="form-control"  />
+
+	<label asp-for="EnglishName" class="control-label"></label>
+	<input asp-for="EnglishName" class="form-control"  />
+
+	<input asp-for="isActive" type="checkbox" class="form-check-input" />
+	<label asp-for="isActive" class="control-label"></label>
+	
+	<br />
+
+	<label asp-for="Notes" class="control-label"></label>
+	<input asp-for="Notes" class="form-control"/>
+
+	<label asp-for="Regionid" class="control-label"></label>
+	<select asp-for="Regionid" asp-items="@(new SelectList(ViewBag.Regions,"RegionID","RegionName"))" class="form-control">
+	<option value="">Select Region</option>
+	</select>
+
+	<input type="submit" value="Save" class="btn btn-primary" />
+	<a asp-action="Index" class="btn btn-secondary">Cancel</a>
+ 
+</form>

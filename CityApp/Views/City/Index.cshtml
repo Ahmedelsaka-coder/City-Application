@@ -1,0 +1,69 @@
+﻿<meta charset="UTF-8" />
+
+@model IEnumerable<City>
+
+<h1>All Cities</h1>
+@using (Html.BeginForm())
+{
+	<div class="input-group">
+		@Html.TextBox("SearchByName",null,new {@class="form-control",@placeholder="Search By City Name.."})
+		<input type="submit" value="Search" class="btn btn-outline-success">
+		<a asp-action="Create" class="btn btn-outline-primary">Create New City</a>
+
+	</div>
+}
+<a asp-action="Create" class="btn btn-primary">Create New City</a>
+
+<table class="table"> 
+	<thead>
+		<tr>
+			<th>
+				@Html.ActionLink("City Code","Index",new {sortField="Code",currentSortField=ViewBag.SortField,sortDirection=ViewBag.SortDirection})
+			</th>
+			<th>
+				@Html.ActionLink("Arabic Name","Index",new {sortField="ArabicName",currentSortField=ViewBag.SortField,sortDirection=ViewBag.SortDirection})
+			</th>
+			<th>
+				@Html.ActionLink("English Name","Index",new {sortField="EnglishName",currentSortField=ViewBag.SortField,sortDirection=ViewBag.SortDirection})
+			</th>
+			<th>
+				@Html.DisplayNameFor( model => model.isActive)
+			</th>
+			<th>
+				@Html.ActionLink("Notes","Index",new {sortField="Notes",currentSortField=ViewBag.SortField,sortDirection=ViewBag.SortDirection})
+			</th>
+			<th>
+				@Html.ActionLink("Region Name","Index",new {sortField="RegionName",currentSortField=ViewBag.SortField,sortDirection=ViewBag.SortDirection})
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Code)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ArabicName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EnglishName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.isActive)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Notes)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.RegionName)
+				</td>
+				<td>
+					@Html.ActionLink("Edit","Edit",new {id = item.CityId})
+					@Html.ActionLink("Delete","Delete",new {id= item.CityId}, new{onclick="return confirm('Are You Sure You Want to Delete This City?');"})
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
